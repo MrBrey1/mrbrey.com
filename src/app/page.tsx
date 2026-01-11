@@ -46,20 +46,21 @@ export default async function Home() {
         </p>
 
         <div className="relative z-10 mt-10 flex gap-4">
-          <a
-            href="#radio"
-            className="rounded-xl bg-white px-6 py-3 text-black font-semibold hover:bg-zinc-200"
-          >
-            Escuchar Radio
-          </a>
-          <a
-            href="#videos"
-            className="rounded-xl border border-zinc-600 px-6 py-3 hover:border-zinc-400"
-          >
-            Ver Videos
-          </a>
-        </div>
-      </section>
+  <a
+    href="#radio"
+    className="rounded-xl bg-white px-6 py-3 text-black font-semibold"
+  >
+    Escuchar Radio
+  </a>
+
+  <a
+    href="/videos"
+    className="rounded-xl border border-white px-6 py-3 text-white font-semibold"
+  >
+    Ver Videos
+  </a>
+</div>
+
 
       {/* VIDEOS */}
       <section id="videos" className="px-6 py-20 md:px-16">
