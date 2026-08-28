@@ -1,16 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
+import {
+  campaignYoutubeIds,
+  spotifyPlaylist,
+  youtubeChannelUrl,
+} from "@/data/media";
+import { getYouTubeVideoDetails } from "@/lib/youtube";
 
-const spotifyPlaylist =
-  "https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO3MhZgk?utm_source=generator";
+export default async function Home() {
+  const featuredVideos = await getYouTubeVideoDetails(campaignYoutubeIds);
 
-const featuredVideos = [
-  { youtubeId: "qOKoaWX6ArU" },
-  { youtubeId: "n7glKI_Di2E" },
-  { youtubeId: "rIXRTSDiWkg" },
-];
-
-export default function Home() {
   return (
     <main className="min-h-screen overflow-hidden bg-black text-white">
       <header className="glass fixed inset-x-0 top-0 z-50 border-b border-white/10">
@@ -113,23 +112,24 @@ export default function Home() {
             <Link href="/videos" className="font-bold text-neutral-300 hover:text-lime-400">Ver galería completa →</Link>
           </div>
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            {featuredVideos.map((video, index) => (
+            {featuredVideos.map((video) => (
               <article key={video.youtubeId} className="group overflow-hidden rounded-3xl border border-white/10 bg-black">
                 <iframe
                   className="aspect-video w-full"
                   src={`https://www.youtube.com/embed/${video.youtubeId}`}
-                  title={`Video destacado ${index + 1} de Mr Brey`}
+                  title={video.title}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   loading="lazy"
                 />
-                <div className="flex items-center justify-between gap-4 p-5">
+                <div className="p-5">
                   <span className="text-xs font-black uppercase tracking-[0.22em] text-lime-400">Campaña actual</span>
+                  <h3 className="mt-2 line-clamp-2 text-lg font-black group-hover:text-lime-400">{video.title}</h3>
                   <a
                     href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm font-semibold text-neutral-400 hover:text-white"
+                    className="mt-3 inline-block text-sm font-semibold text-neutral-400 hover:text-white"
                   >
                     Ver en YouTube →
                   </a>
@@ -181,9 +181,12 @@ export default function Home() {
       </section>
 
       <footer className="border-t border-white/10 px-5 py-8 md:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-3 text-sm text-neutral-500 md:flex-row">
+        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-3 text-sm text-neutral-500 md:flex-row md:items-center">
           <p>© {new Date().getFullYear()} Mr Brey.</p>
-          <p>Música · Arte · Identidad</p>
+          <div className="flex items-center gap-5">
+            <a href={youtubeChannelUrl} target="_blank" rel="noopener noreferrer" className="hover:text-lime-400">YouTube</a>
+            <p>Música · Arte · Identidad</p>
+          </div>
         </div>
       </footer>
     </main>
