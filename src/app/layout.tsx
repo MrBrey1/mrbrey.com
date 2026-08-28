@@ -1,30 +1,54 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import {
+  focusSingle,
+  siteUrl,
+  socialLinks,
+  spotifyArtistUrl,
+} from "@/data/media";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.mrbrey.com"),
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Mr Brey | Música Urbana Cinematográfica",
+    default: "Mr Brey | Sitio Oficial",
     template: "%s | Mr Brey",
   },
   description:
-    "Mr Brey transforma emociones reales en música urbana, cinematográfica y honesta. R&B latino, pop emocional, rap consciente y vibras espirituales.",
+    "Sitio oficial de Mr Brey, artista independiente de Latin Urban basado en New Jersey. Música, Se Me Pega, videos oficiales, press kit y contacto profesional.",
+  alternates: {
+    canonical: "/",
+  },
   keywords: [
     "Mr Brey",
-    "música urbana",
+    "Se Me Pega",
+    "Latin Urban",
+    "Afro Reggaeton",
+    "Latin Trap",
     "R&B latino",
-    "pop emocional",
-    "rap consciente",
-    "trap caribeño",
-    "afrobeat",
-    "música romántica",
-    "sanación interior",
+    "trap reggaeton",
+    "música urbana",
+    "artista independiente",
   ],
+  authors: [{ name: "Mr Brey", url: siteUrl }],
+  creator: "Mr Brey",
+  publisher: "Mr Brey",
+  manifest: "/manifest.webmanifest",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
-    title: "Mr Brey | Música Urbana Cinematográfica",
+    title: "Mr Brey | Sitio Oficial",
     description:
-      "Música profunda, honesta y cinematográfica para quienes han amado, sufrido y renacido.",
-    url: "https://www.mrbrey.com",
+      "Música urbana con emoción real, identidad caribeña y una visión cinematográfica.",
+    url: siteUrl,
     siteName: "Mr Brey",
     images: [
       {
@@ -39,21 +63,70 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mr Brey | Música Urbana Cinematográfica",
+    title: "Mr Brey | Sitio Oficial",
     description:
-      "Música urbana, emocional y cinematográfica con alma caribeña.",
+      "Música urbana con emoción real, identidad caribeña y una visión cinematográfica.",
     images: ["/images/mr-brey-banner.png"],
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#050505",
+  colorScheme: "dark",
+};
+
+const artistId = `${siteUrl}/#artist`;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": artistId,
+      name: "Mr Brey",
+      url: siteUrl,
+      image: `${siteUrl}/images/mr-brey-portrait.png`,
+      jobTitle: "Recording Artist & Songwriter",
+      description:
+        "Independent Latin Urban artist based in New Jersey, developing a modern sound built around melody, atmosphere, Caribbean rhythm and contemporary urban production.",
+      sameAs: [...socialLinks.map((link) => link.href), spotifyArtistUrl],
+    },
+    {
+      "@type": "MusicRecording",
+      "@id": `${siteUrl}/#se-me-pega`,
+      name: focusSingle.title,
+      byArtist: { "@id": artistId },
+      duration: "PT2M52S",
+      genre: ["Latin Urban", "Hip-Hop", "Trap-Reggaeton"],
+      isrcCode: focusSingle.isrc,
+      url: focusSingle.spotifyUrl,
+      inLanguage: "es",
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: "Mr Brey",
+      inLanguage: "es",
+      about: { "@id": artistId },
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="es">
-      <body>{children}</body>
+      <body>
+        {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      </body>
     </html>
   );
 }

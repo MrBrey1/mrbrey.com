@@ -1,20 +1,27 @@
 import { MetadataRoute } from "next";
+import { siteUrl } from "@/data/media";
+
+const lastMajorUpdate = new Date("2026-08-28T00:00:00-04:00");
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://www.mrbrey.com";
-
   return [
     {
-      url: `${baseUrl}/`,
-      lastModified: new Date(),
+      url: `${siteUrl}/`,
+      lastModified: lastMajorUpdate,
       changeFrequency: "weekly",
       priority: 1,
     },
     {
-      url: `${baseUrl}/videos`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
+      url: `${siteUrl}/videos`,
+      lastModified: lastMajorUpdate,
+      changeFrequency: "daily",
       priority: 0.9,
+    },
+    {
+      url: `${siteUrl}/press`,
+      lastModified: lastMajorUpdate,
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
   ];
 }
