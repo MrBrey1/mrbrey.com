@@ -1,6 +1,12 @@
 import Link from "next/link";
 
-const videos = [
+const campaignVideos = [
+  { youtubeId: "qOKoaWX6ArU" },
+  { youtubeId: "n7glKI_Di2E" },
+  { youtubeId: "rIXRTSDiWkg" },
+];
+
+const archiveVideos = [
   { title: "Deambulando", youtubeId: "_Lr1Vwnv5fM" },
   { title: "Creo mundo con mis versos", youtubeId: "DK9j0gRpSoY" },
   { title: "No hay Ayer ni mañana", youtubeId: "nTWWyZJZgZY" },
@@ -37,31 +43,72 @@ export default function VideosPage() {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {videos.map((video) => (
-            <article key={video.youtubeId} className="group overflow-hidden rounded-3xl border border-white/10 bg-neutral-950">
-              <iframe
-                className="aspect-video w-full"
-                src={`https://www.youtube.com/embed/${video.youtubeId}`}
-                title={video.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                loading="lazy"
-              />
-              <div className="p-5">
-                <h2 className="text-lg font-black group-hover:text-lime-400">{video.title}</h2>
-                <a
-                  href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-3 inline-block text-sm font-semibold text-neutral-500 hover:text-lime-400"
-                >
-                  Abrir en YouTube →
-                </a>
-              </div>
-            </article>
-          ))}
-        </div>
+        <section className="mt-16">
+          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.28em] text-lime-400">Campaña actual</p>
+              <h2 className="mt-3 text-3xl font-black tracking-tight md:text-5xl">Videos en promoción</h2>
+            </div>
+            <p className="max-w-xl text-neutral-500">Los visuales que estamos destacando actualmente en prensa, radio, redes y promoción digital.</p>
+          </div>
+
+          <div className="mt-8 grid gap-6 lg:grid-cols-3">
+            {campaignVideos.map((video, index) => (
+              <article key={video.youtubeId} className="overflow-hidden rounded-3xl border border-lime-400/20 bg-neutral-950 shadow-2xl shadow-lime-400/5">
+                <iframe
+                  className="aspect-video w-full"
+                  src={`https://www.youtube.com/embed/${video.youtubeId}`}
+                  title={`Video en promoción ${index + 1} de Mr Brey`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  loading="lazy"
+                />
+                <div className="flex items-center justify-between gap-4 p-5">
+                  <span className="text-xs font-black uppercase tracking-[0.2em] text-lime-400">Destacado</span>
+                  <a
+                    href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-semibold text-neutral-400 hover:text-white"
+                  >
+                    Abrir en YouTube →
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-20 border-t border-white/10 pt-14">
+          <p className="text-xs font-black uppercase tracking-[0.28em] text-neutral-500">Más visuales</p>
+          <h2 className="mt-3 text-3xl font-black tracking-tight md:text-5xl">Archivo oficial</h2>
+
+          <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {archiveVideos.map((video) => (
+              <article key={video.youtubeId} className="group overflow-hidden rounded-3xl border border-white/10 bg-neutral-950">
+                <iframe
+                  className="aspect-video w-full"
+                  src={`https://www.youtube.com/embed/${video.youtubeId}`}
+                  title={video.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  loading="lazy"
+                />
+                <div className="p-5">
+                  <h3 className="text-lg font-black group-hover:text-lime-400">{video.title}</h3>
+                  <a
+                    href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 inline-block text-sm font-semibold text-neutral-500 hover:text-lime-400"
+                  >
+                    Abrir en YouTube →
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
       </div>
     </main>
   );
