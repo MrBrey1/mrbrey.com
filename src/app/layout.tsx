@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { youtubeChannelUrl } from "@/data/media";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -54,6 +55,7 @@ const artistSchema = {
   name: "Mr Brey",
   url: "https://www.mrbrey.com",
   image: "https://www.mrbrey.com/images/mr-brey-portrait.png",
+  sameAs: [youtubeChannelUrl],
   genre: ["Latin Urban", "R&B", "Afrobeat", "Trap"],
   description:
     "Artista de música urbana con una propuesta que mezcla emoción, identidad caribeña y estética cinematográfica.",
