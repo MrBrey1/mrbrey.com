@@ -5,9 +5,9 @@ const spotifyPlaylist =
   "https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO3MhZgk?utm_source=generator";
 
 const featuredVideos = [
-  { title: "Deambulando", youtubeId: "_Lr1Vwnv5fM" },
-  { title: "Creo mundo con mis versos", youtubeId: "DK9j0gRpSoY" },
-  { title: "No hay Ayer ni mañana", youtubeId: "nTWWyZJZgZY" },
+  { youtubeId: "qOKoaWX6ArU" },
+  { youtubeId: "n7glKI_Di2E" },
+  { youtubeId: "rIXRTSDiWkg" },
 ];
 
 export default function Home() {
@@ -106,24 +106,33 @@ export default function Home() {
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
-              <p className="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-lime-400">Visuales</p>
-              <h2 className="text-4xl font-black tracking-tight md:text-6xl">Videos oficiales</h2>
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-lime-400">En promoción</p>
+              <h2 className="text-4xl font-black tracking-tight md:text-6xl">Videos destacados</h2>
+              <p className="mt-4 max-w-2xl text-neutral-400">Los visuales que forman parte de la campaña actual de Mr Brey.</p>
             </div>
             <Link href="/videos" className="font-bold text-neutral-300 hover:text-lime-400">Ver galería completa →</Link>
           </div>
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            {featuredVideos.map((video) => (
+            {featuredVideos.map((video, index) => (
               <article key={video.youtubeId} className="group overflow-hidden rounded-3xl border border-white/10 bg-black">
                 <iframe
                   className="aspect-video w-full"
                   src={`https://www.youtube.com/embed/${video.youtubeId}`}
-                  title={video.title}
+                  title={`Video destacado ${index + 1} de Mr Brey`}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   loading="lazy"
                 />
-                <div className="p-5">
-                  <h3 className="text-lg font-black group-hover:text-lime-400">{video.title}</h3>
+                <div className="flex items-center justify-between gap-4 p-5">
+                  <span className="text-xs font-black uppercase tracking-[0.22em] text-lime-400">Campaña actual</span>
+                  <a
+                    href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-semibold text-neutral-400 hover:text-white"
+                  >
+                    Ver en YouTube →
+                  </a>
                 </div>
               </article>
             ))}
