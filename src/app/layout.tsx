@@ -1,33 +1,54 @@
-import type { Metadata } from "next";
-import { youtubeChannelUrl } from "@/data/media";
+import type { Metadata, Viewport } from "next";
+import {
+  focusSingle,
+  siteUrl,
+  socialLinks,
+  spotifyArtistUrl,
+} from "@/data/media";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.mrbrey.com"),
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Mr Brey | Música Urbana Cinematográfica",
+    default: "Mr Brey | Sitio Oficial",
     template: "%s | Mr Brey",
   },
   description:
-    "Sitio oficial de Mr Brey. Música urbana, afrobeat, trap caribeño, R&B latino, videos oficiales, prensa y contacto profesional.",
+    "Sitio oficial de Mr Brey, artista independiente de Latin Urban basado en New Jersey. Música, Se Me Pega, videos oficiales, press kit y contacto profesional.",
   alternates: {
     canonical: "/",
   },
   keywords: [
     "Mr Brey",
-    "música urbana",
+    "Se Me Pega",
+    "Latin Urban",
+    "Afro Reggaeton",
+    "Latin Trap",
     "R&B latino",
-    "afrobeat",
-    "trap caribeño",
-    "pop latino",
-    "artista dominicano",
-    "música romántica",
+    "trap reggaeton",
+    "música urbana",
+    "artista independiente",
   ],
+  authors: [{ name: "Mr Brey", url: siteUrl }],
+  creator: "Mr Brey",
+  publisher: "Mr Brey",
+  manifest: "/manifest.webmanifest",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
     title: "Mr Brey | Sitio Oficial",
     description:
       "Música urbana con emoción real, identidad caribeña y una visión cinematográfica.",
-    url: "https://www.mrbrey.com",
+    url: siteUrl,
     siteName: "Mr Brey",
     images: [
       {
@@ -49,16 +70,47 @@ export const metadata: Metadata = {
   },
 };
 
-const artistSchema = {
+export const viewport: Viewport = {
+  themeColor: "#050505",
+  colorScheme: "dark",
+};
+
+const artistId = `${siteUrl}/#artist`;
+
+const structuredData = {
   "@context": "https://schema.org",
-  "@type": "MusicGroup",
-  name: "Mr Brey",
-  url: "https://www.mrbrey.com",
-  image: "https://www.mrbrey.com/images/mr-brey-portrait.png",
-  sameAs: [youtubeChannelUrl],
-  genre: ["Latin Urban", "R&B", "Afrobeat", "Trap"],
-  description:
-    "Artista de música urbana con una propuesta que mezcla emoción, identidad caribeña y estética cinematográfica.",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": artistId,
+      name: "Mr Brey",
+      url: siteUrl,
+      image: `${siteUrl}/images/mr-brey-portrait.png`,
+      jobTitle: "Recording Artist & Songwriter",
+      description:
+        "Independent Latin Urban artist based in New Jersey, developing a modern sound built around melody, atmosphere, Caribbean rhythm and contemporary urban production.",
+      sameAs: [...socialLinks.map((link) => link.href), spotifyArtistUrl],
+    },
+    {
+      "@type": "MusicRecording",
+      "@id": `${siteUrl}/#se-me-pega`,
+      name: focusSingle.title,
+      byArtist: { "@id": artistId },
+      duration: "PT2M52S",
+      genre: ["Latin Urban", "Hip-Hop", "Trap-Reggaeton"],
+      isrcCode: focusSingle.isrc,
+      url: focusSingle.spotifyUrl,
+      inLanguage: "es",
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: "Mr Brey",
+      inLanguage: "es",
+      about: { "@id": artistId },
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -72,7 +124,7 @@ export default function RootLayout({
         {children}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(artistSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </body>
     </html>
