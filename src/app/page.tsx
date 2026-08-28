@@ -4,167 +4,191 @@ import Link from "next/link";
 const spotifyPlaylist =
   "https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO3MhZgk?utm_source=generator";
 
+const featuredVideos = [
+  { title: "Deambulando", youtubeId: "_Lr1Vwnv5fM" },
+  { title: "Creo mundo con mis versos", youtubeId: "DK9j0gRpSoY" },
+  { title: "No hay Ayer ni mañana", youtubeId: "nTWWyZJZgZY" },
+];
+
+const socials = [
+  { label: "Spotify", href: "https://open.spotify.com/artist/" },
+  { label: "YouTube", href: "https://www.youtube.com/" },
+  { label: "Instagram", href: "https://www.instagram.com/" },
+  { label: "TikTok", href: "https://www.tiktok.com/" },
+];
+
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-white">
-      <section className="relative min-h-screen overflow-hidden">
+    <main className="min-h-screen overflow-hidden bg-black text-white">
+      <header className="glass fixed inset-x-0 top-0 z-50 border-b border-white/10">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
+          <Link href="#inicio" className="text-xl font-black tracking-tight">
+            MR BREY<span className="text-lime-400">.</span>
+          </Link>
+          <nav className="hidden items-center gap-7 text-sm font-semibold text-neutral-300 md:flex">
+            <Link href="#musica" className="hover:text-lime-400">Música</Link>
+            <Link href="#videos" className="hover:text-lime-400">Videos</Link>
+            <Link href="#bio" className="hover:text-lime-400">Bio</Link>
+            <Link href="#contacto" className="hover:text-lime-400">Contacto</Link>
+          </nav>
+          <a
+            href="#musica"
+            className="rounded-full bg-lime-400 px-4 py-2 text-sm font-black text-black hover:bg-lime-300"
+          >
+            Escuchar
+          </a>
+        </div>
+      </header>
+
+      <section id="inicio" className="relative min-h-[100svh] overflow-hidden">
         <Image
           src="/images/mr-brey-banner.png"
           alt="Mr Brey"
           fill
           priority
-          className="object-cover opacity-70"
+          sizes="100vw"
+          className="object-cover object-center opacity-60"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/75 to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30" />
 
-        <div className="relative z-10 flex min-h-screen items-center px-6 md:px-16">
-          <div className="max-w-3xl">
-            <p className="mb-4 text-sm uppercase tracking-[0.35em] text-lime-400">
+        <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl items-end px-5 pb-20 pt-28 md:items-center md:px-8 md:pb-0">
+          <div className="max-w-4xl">
+            <p className="mb-5 text-xs font-bold uppercase tracking-[0.35em] text-lime-400 md:text-sm">
               Trap · Afrobeat · Caribeño · R&B Latino
             </p>
-
-            <h1 className="text-6xl font-black tracking-tight md:text-8xl">
-              Mr Brey
+            <h1 className="text-balance text-6xl font-black leading-[0.88] tracking-[-0.05em] sm:text-7xl md:text-8xl lg:text-9xl">
+              MR BREY
             </h1>
-
-            <p className="mt-6 max-w-2xl text-lg text-neutral-300 md:text-xl">
-              Música urbana, cinematográfica y honesta. Canciones para sanar,
-              levantarse, amar, recordar y no bajar de nivel.
+            <p className="mt-7 max-w-2xl text-lg leading-relaxed text-neutral-300 md:text-xl">
+              Música urbana con emoción real, identidad caribeña y una visión cinematográfica.
             </p>
-
-            <div className="mt-10 flex flex-wrap gap-4">
-              <a
-                href="#musica"
-                className="rounded-xl bg-lime-400 px-6 py-3 font-bold text-black hover:bg-lime-300"
-              >
-                Escuchar Música
+            <div className="mt-9 flex flex-wrap gap-3">
+              <a href="#musica" className="rounded-full bg-lime-400 px-6 py-3 font-black text-black hover:-translate-y-0.5 hover:bg-lime-300">
+                Escuchar ahora
               </a>
-
-              <Link
-                href="/videos"
-                className="rounded-xl border border-white/40 px-6 py-3 font-bold text-white hover:border-lime-400"
-              >
-                Ver Videos
+              <Link href="/videos" className="rounded-full border border-white/25 bg-white/5 px-6 py-3 font-bold hover:-translate-y-0.5 hover:border-lime-400">
+                Ver videos
               </Link>
-
-              <a
-                href="mailto:press@mrbrey.com"
-                className="rounded-xl border border-white/20 px-6 py-3 font-bold text-white hover:border-white"
-              >
-                Contacto
+              <a href="mailto:press@mrbrey.com" className="rounded-full border border-white/15 px-6 py-3 font-bold text-neutral-200 hover:border-white/40">
+                Booking / Press
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="px-6 py-24 md:px-16">
-        <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[0.8fr_1.2fr]">
-          <div>
-            <Image
-              src="/images/mr-brey-portrait.png"
-              alt="Retrato de Mr Brey"
-              width={800}
-              height={1000}
-              className="rounded-3xl object-cover"
-            />
-          </div>
-
-          <div className="flex flex-col justify-center">
-            <p className="mb-3 text-sm uppercase tracking-[0.3em] text-lime-400">
-              Biografía
-            </p>
-
-            <h2 className="text-4xl font-black md:text-5xl">
-              Emoción real convertida en música.
-            </h2>
-
-            <p className="mt-6 text-neutral-300 leading-relaxed">
-              Mr Brey es un artista que transforma emociones reales en música
-              profunda, cinematográfica y honesta. Su estilo único mezcla lo
-              urbano romántico con reflexiones intensas, espiritualidad moderna
-              y un toque poético que conecta con quienes han amado, sufrido y
-              renacido.
-            </p>
-
-            <p className="mt-4 text-neutral-300 leading-relaxed">
-              En sus canciones conviven la vulnerabilidad, la fuerza interna, el
-              desahogo y la superación emocional, siempre con melodías
-              envolventes y letras que tocan el alma. Su sonido fusiona
-              influencias del R&B latino, pop emocional, rap consciente y vibras
-              espirituales.
-            </p>
-
-            <p className="mt-4 text-neutral-300 leading-relaxed">
-              Mr Brey no solo canta: acompaña, motiva y eleva.
-            </p>
+      <section className="border-y border-white/10 bg-neutral-950/80 px-5 py-6 md:px-8">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4">
+          <p className="text-sm font-bold uppercase tracking-[0.22em] text-neutral-500">Conecta con Mr Brey</p>
+          <div className="flex flex-wrap gap-5 text-sm font-bold">
+            {socials.map((social) => (
+              <a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" className="text-neutral-300 hover:text-lime-400">
+                {social.label}
+              </a>
+            ))}
           </div>
         </div>
       </section>
 
-      <section id="musica" className="bg-neutral-950 px-6 py-24 md:px-16">
-        <div className="mx-auto max-w-6xl">
-          <p className="mb-3 text-sm uppercase tracking-[0.3em] text-lime-400">
-            Música
-          </p>
-
-          <h2 className="text-4xl font-black md:text-5xl">
-            Playlist oficial
-          </h2>
-
-          <p className="mt-4 max-w-2xl text-neutral-400">
-            Una selección preparada por Spotify con lanzamientos y canciones de
-            Mr Brey.
-          </p>
-
-          <div className="mt-10 overflow-hidden rounded-3xl border border-white/10">
+      <section id="musica" className="px-5 py-24 md:px-8 md:py-32">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:items-end">
+            <div>
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-lime-400">Música</p>
+              <h2 className="text-balance text-4xl font-black tracking-tight md:text-6xl">El sonido de una historia que todavía se está escribiendo.</h2>
+            </div>
+            <p className="max-w-xl text-lg leading-relaxed text-neutral-400 lg:justify-self-end">
+              Explora una selección oficial de canciones de Mr Brey: emoción, calle, romance y evolución en un mismo universo sonoro.
+            </p>
+          </div>
+          <div className="mt-12 overflow-hidden rounded-[2rem] border border-white/10 bg-neutral-950 shadow-2xl shadow-lime-400/5">
             <iframe
               src={spotifyPlaylist}
               width="100%"
               height="420"
               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
               loading="lazy"
+              title="Playlist oficial de Mr Brey en Spotify"
             />
           </div>
         </div>
       </section>
 
-      <section className="px-6 py-24 md:px-16">
-        <div className="mx-auto max-w-6xl">
-          <p className="mb-3 text-sm uppercase tracking-[0.3em] text-lime-400">
-            Visuales
-          </p>
-
-          <h2 className="text-4xl font-black md:text-5xl">
-            Videos oficiales
-          </h2>
-
-          <p className="mt-4 max-w-2xl text-neutral-400">
-            Explora el universo audiovisual de Mr Brey: música, narrativa y
-            emoción en formato cinematográfico.
-          </p>
-
-          <Link
-            href="/videos"
-            className="mt-8 inline-block rounded-xl bg-white px-6 py-3 font-bold text-black hover:bg-neutral-200"
-          >
-            Entrar a la galería →
-          </Link>
+      <section id="videos" className="border-y border-white/10 bg-neutral-950 px-5 py-24 md:px-8 md:py-32">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div>
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-lime-400">Visuales</p>
+              <h2 className="text-4xl font-black tracking-tight md:text-6xl">Videos oficiales</h2>
+            </div>
+            <Link href="/videos" className="font-bold text-neutral-300 hover:text-lime-400">Ver galería completa →</Link>
+          </div>
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {featuredVideos.map((video) => (
+              <article key={video.youtubeId} className="group overflow-hidden rounded-3xl border border-white/10 bg-black">
+                <iframe
+                  className="aspect-video w-full"
+                  src={`https://www.youtube.com/embed/${video.youtubeId}`}
+                  title={video.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  loading="lazy"
+                />
+                <div className="p-5">
+                  <h3 className="text-lg font-black group-hover:text-lime-400">{video.title}</h3>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="border-t border-white/10 px-6 py-16 text-center">
-        <h2 className="text-3xl font-black">Booking / Press / Colaboraciones</h2>
-        <a
-          href="mailto:press@mrbrey.com"
-          className="mt-4 inline-block text-lime-400 hover:text-lime-300"
-        >
-          press@mrbrey.com
-        </a>
+      <section id="bio" className="px-5 py-24 md:px-8 md:py-32">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div className="relative overflow-hidden rounded-[2rem] border border-white/10">
+            <Image
+              src="/images/mr-brey-portrait.png"
+              alt="Retrato oficial de Mr Brey"
+              width={900}
+              height={1125}
+              sizes="(min-width: 1024px) 45vw, 100vw"
+              className="h-auto w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent" />
+          </div>
+          <div>
+            <p className="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-lime-400">Biografía</p>
+            <h2 className="text-balance text-4xl font-black tracking-tight md:text-6xl">Emoción real convertida en música.</h2>
+            <div className="mt-7 space-y-5 text-lg leading-relaxed text-neutral-300">
+              <p>Mr Brey transforma experiencias reales en canciones que mezclan vulnerabilidad, fuerza, romance y evolución personal.</p>
+              <p>Su propuesta fusiona R&B latino, pop emocional, rap, trap caribeño y afrobeat con una sensibilidad cinematográfica que convierte cada tema en una experiencia.</p>
+              <p className="font-bold text-white">No solo canta historias. Construye un universo alrededor de ellas.</p>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <footer className="border-t border-white/10 px-6 py-8 text-center text-sm text-neutral-500">
-        © {new Date().getFullYear()} Mr Brey. Música, arte y conciencia.
+      <section id="contacto" className="px-5 pb-24 md:px-8 md:pb-32">
+        <div className="mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-lime-400/20 bg-gradient-to-br from-lime-400/10 via-neutral-950 to-black p-8 md:p-14">
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-lime-400">Contacto profesional</p>
+          <div className="mt-5 flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+            <div>
+              <h2 className="max-w-3xl text-balance text-4xl font-black tracking-tight md:text-6xl">Booking, prensa, radio y colaboraciones.</h2>
+              <p className="mt-5 max-w-2xl text-neutral-400">Para oportunidades profesionales, entrevistas, programación musical y colaboraciones.</p>
+            </div>
+            <a href="mailto:press@mrbrey.com" className="shrink-0 rounded-full bg-white px-6 py-3 font-black text-black hover:-translate-y-0.5 hover:bg-lime-400">
+              press@mrbrey.com
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <footer className="border-t border-white/10 px-5 py-8 md:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-3 text-sm text-neutral-500 md:flex-row">
+          <p>© {new Date().getFullYear()} Mr Brey.</p>
+          <p>Música · Arte · Identidad</p>
+        </div>
       </footer>
     </main>
   );
