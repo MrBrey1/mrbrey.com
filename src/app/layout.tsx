@@ -8,22 +8,24 @@ export const metadata: Metadata = {
     template: "%s | Mr Brey",
   },
   description:
-    "Mr Brey transforma emociones reales en música urbana, cinematográfica y honesta. R&B latino, pop emocional, rap consciente y vibras espirituales.",
+    "Sitio oficial de Mr Brey. Música urbana, afrobeat, trap caribeño, R&B latino, videos oficiales, prensa y contacto profesional.",
+  alternates: {
+    canonical: "/",
+  },
   keywords: [
     "Mr Brey",
     "música urbana",
     "R&B latino",
-    "pop emocional",
-    "rap consciente",
-    "trap caribeño",
     "afrobeat",
+    "trap caribeño",
+    "pop latino",
+    "artista dominicano",
     "música romántica",
-    "sanación interior",
   ],
   openGraph: {
-    title: "Mr Brey | Música Urbana Cinematográfica",
+    title: "Mr Brey | Sitio Oficial",
     description:
-      "Música profunda, honesta y cinematográfica para quienes han amado, sufrido y renacido.",
+      "Música urbana con emoción real, identidad caribeña y una visión cinematográfica.",
     url: "https://www.mrbrey.com",
     siteName: "Mr Brey",
     images: [
@@ -39,21 +41,38 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mr Brey | Música Urbana Cinematográfica",
+    title: "Mr Brey | Sitio Oficial",
     description:
-      "Música urbana, emocional y cinematográfica con alma caribeña.",
+      "Música urbana con emoción real, identidad caribeña y una visión cinematográfica.",
     images: ["/images/mr-brey-banner.png"],
   },
 };
 
+const artistSchema = {
+  "@context": "https://schema.org",
+  "@type": "MusicGroup",
+  name: "Mr Brey",
+  url: "https://www.mrbrey.com",
+  image: "https://www.mrbrey.com/images/mr-brey-portrait.png",
+  genre: ["Latin Urban", "R&B", "Afrobeat", "Trap"],
+  description:
+    "Artista de música urbana con una propuesta que mezcla emoción, identidad caribeña y estética cinematográfica.",
+};
+
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="es">
-      <body>{children}</body>
+      <body>
+        {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(artistSchema) }}
+        />
+      </body>
     </html>
   );
 }
