@@ -2,8 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   campaignYoutubeIds,
+  focusSingle,
+  musicTalkersFeatureUrl,
+  pressEmail,
+  radioEpkUrl,
+  socialLinks,
   spotifyPlaylist,
-  youtubeChannelUrl,
 } from "@/data/media";
 import { getYouTubeVideoDetails } from "@/lib/youtube";
 
@@ -18,13 +22,16 @@ export default async function Home() {
             MR BREY<span className="text-lime-400">.</span>
           </Link>
           <nav className="hidden items-center gap-7 text-sm font-semibold text-neutral-300 md:flex">
+            <Link href="#lanzamiento" className="hover:text-lime-400">Lanzamiento</Link>
             <Link href="#musica" className="hover:text-lime-400">Música</Link>
             <Link href="#videos" className="hover:text-lime-400">Videos</Link>
             <Link href="#bio" className="hover:text-lime-400">Bio</Link>
-            <Link href="#contacto" className="hover:text-lime-400">Contacto</Link>
+            <Link href="/press" className="hover:text-lime-400">Press / EPK</Link>
           </nav>
           <a
-            href="#musica"
+            href={focusSingle.spotifyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="rounded-full bg-lime-400 px-4 py-2 text-sm font-black text-black hover:bg-lime-300"
           >
             Escuchar
@@ -47,7 +54,7 @@ export default async function Home() {
         <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl items-end px-5 pb-20 pt-28 md:items-center md:px-8 md:pb-0">
           <div className="max-w-4xl">
             <p className="mb-5 text-xs font-bold uppercase tracking-[0.35em] text-lime-400 md:text-sm">
-              Trap · Afrobeat · Caribeño · R&B Latino
+              Latin Urban · Afro-Caribbean · Trap · R&B
             </p>
             <h1 className="text-balance text-6xl font-black leading-[0.88] tracking-[-0.05em] sm:text-7xl md:text-8xl lg:text-9xl">
               MR BREY
@@ -56,39 +63,121 @@ export default async function Home() {
               Música urbana con emoción real, identidad caribeña y una visión cinematográfica.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <a href="#musica" className="rounded-full bg-lime-400 px-6 py-3 font-black text-black hover:-translate-y-0.5 hover:bg-lime-300">
-                Escuchar ahora
+              <a
+                href={focusSingle.spotifyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full bg-lime-400 px-6 py-3 font-black text-black hover:-translate-y-0.5 hover:bg-lime-300"
+              >
+                Escuchar “Se Me Pega”
               </a>
-              <Link href="/videos" className="rounded-full border border-white/25 bg-white/5 px-6 py-3 font-bold hover:-translate-y-0.5 hover:border-lime-400">
+              <Link
+                href="/videos"
+                className="rounded-full border border-white/25 bg-white/5 px-6 py-3 font-bold hover:-translate-y-0.5 hover:border-lime-400"
+              >
                 Ver videos
               </Link>
-              <a href="mailto:press@mrbrey.com" className="rounded-full border border-white/15 px-6 py-3 font-bold text-neutral-200 hover:border-white/40">
-                Booking / Press
-              </a>
+              <Link
+                href="/press"
+                className="rounded-full border border-white/15 px-6 py-3 font-bold text-neutral-200 hover:border-white/40"
+              >
+                Press / EPK
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
       <section className="border-y border-white/10 bg-neutral-950/80 px-5 py-6 md:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-3 md:flex-row md:items-center">
-          <p className="text-sm font-bold uppercase tracking-[0.22em] text-neutral-500">Artista independiente · USA / Caribe</p>
-          <p className="text-sm text-neutral-400">Música · Visuales · Cultura · Emoción</p>
+        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 md:flex-row md:items-center">
+          <p className="text-sm font-bold uppercase tracking-[0.22em] text-neutral-500">
+            Independent Latin Urban Artist · New Jersey, USA
+          </p>
+          <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm font-bold text-neutral-400">
+            {socialLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-lime-400"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section id="musica" className="px-5 py-24 md:px-8 md:py-32">
+      <section id="lanzamiento" className="px-5 py-24 md:px-8 md:py-32">
+        <div className="mx-auto max-w-7xl">
+          <div className="overflow-hidden rounded-[2rem] border border-lime-400/20 bg-gradient-to-br from-lime-400/10 via-neutral-950 to-black p-6 md:p-10 lg:p-12">
+            <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.3em] text-lime-400">
+                  Focus single · Radio ready
+                </p>
+                <h2 className="mt-4 text-balance text-5xl font-black tracking-[-0.04em] md:text-7xl">
+                  Se Me Pega
+                </h2>
+                <p className="mt-6 max-w-xl text-lg leading-relaxed text-neutral-300">
+                  Un lanzamiento Latin Urban de energía sensual y nocturna, con bases de trap-reggaeton,
+                  atmósfera profunda y pulso Afro-Caribbean. Versión clean / non-explicit y duración de {focusSingle.duration}.
+                </p>
+                <div className="mt-7 flex flex-wrap gap-2 text-xs font-bold uppercase tracking-[0.16em] text-neutral-400">
+                  <span className="rounded-full border border-white/10 px-3 py-2">{focusSingle.genre}</span>
+                  <span className="rounded-full border border-white/10 px-3 py-2">ISRC {focusSingle.isrc}</span>
+                  <span className="rounded-full border border-white/10 px-3 py-2">Independent</span>
+                </div>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <a
+                    href={focusSingle.spotifyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full bg-white px-6 py-3 font-black text-black hover:-translate-y-0.5 hover:bg-lime-400"
+                  >
+                    Abrir en Spotify
+                  </a>
+                  <a
+                    href={radioEpkUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full border border-white/20 px-6 py-3 font-bold hover:border-lime-400 hover:text-lime-400"
+                  >
+                    Radio EPK
+                  </a>
+                </div>
+              </div>
+
+              <div className="overflow-hidden rounded-3xl border border-white/10 bg-black shadow-2xl shadow-lime-400/5">
+                <iframe
+                  src={focusSingle.spotifyEmbed}
+                  width="100%"
+                  height="352"
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                  title="Se Me Pega de Mr Brey en Spotify"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="musica" className="border-y border-white/10 bg-neutral-950 px-5 py-24 md:px-8 md:py-32">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:items-end">
             <div>
-              <p className="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-lime-400">Música</p>
-              <h2 className="text-balance text-4xl font-black tracking-tight md:text-6xl">El sonido de una historia que todavía se está escribiendo.</h2>
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-lime-400">Catálogo</p>
+              <h2 className="text-balance text-4xl font-black tracking-tight md:text-6xl">
+                Más música de Mr Brey.
+              </h2>
             </div>
             <p className="max-w-xl text-lg leading-relaxed text-neutral-400 lg:justify-self-end">
-              Explora una selección oficial de canciones de Mr Brey: emoción, calle, romance y evolución en un mismo universo sonoro.
+              Canciones donde conviven emoción, calle, romance, atmósfera y evolución personal.
             </p>
           </div>
-          <div className="mt-12 overflow-hidden rounded-[2rem] border border-white/10 bg-neutral-950 shadow-2xl shadow-lime-400/5">
+          <div className="mt-12 overflow-hidden rounded-[2rem] border border-white/10 bg-black shadow-2xl shadow-lime-400/5">
             <iframe
               src={spotifyPlaylist}
               width="100%"
@@ -101,30 +190,41 @@ export default async function Home() {
         </div>
       </section>
 
-      <section id="videos" className="border-y border-white/10 bg-neutral-950 px-5 py-24 md:px-8 md:py-32">
+      <section id="videos" className="px-5 py-24 md:px-8 md:py-32">
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-lime-400">En promoción</p>
               <h2 className="text-4xl font-black tracking-tight md:text-6xl">Videos destacados</h2>
-              <p className="mt-4 max-w-2xl text-neutral-400">Los visuales que forman parte de la campaña actual de Mr Brey.</p>
+              <p className="mt-4 max-w-2xl text-neutral-400">
+                Los tres visuales que forman parte de la campaña actual de Mr Brey.
+              </p>
             </div>
-            <Link href="/videos" className="font-bold text-neutral-300 hover:text-lime-400">Ver galería completa →</Link>
+            <Link href="/videos" className="font-bold text-neutral-300 hover:text-lime-400">
+              Ver galería completa →
+            </Link>
           </div>
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {featuredVideos.map((video) => (
-              <article key={video.youtubeId} className="group overflow-hidden rounded-3xl border border-white/10 bg-black">
+              <article
+                key={video.youtubeId}
+                className="group overflow-hidden rounded-3xl border border-white/10 bg-neutral-950"
+              >
                 <iframe
                   className="aspect-video w-full"
-                  src={`https://www.youtube.com/embed/${video.youtubeId}`}
+                  src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}`}
                   title={video.title}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   loading="lazy"
                 />
                 <div className="p-5">
-                  <span className="text-xs font-black uppercase tracking-[0.22em] text-lime-400">Campaña actual</span>
-                  <h3 className="mt-2 line-clamp-2 text-lg font-black group-hover:text-lime-400">{video.title}</h3>
+                  <span className="text-xs font-black uppercase tracking-[0.22em] text-lime-400">
+                    Campaña actual
+                  </span>
+                  <h3 className="mt-2 line-clamp-2 text-lg font-black group-hover:text-lime-400">
+                    {video.title}
+                  </h3>
                   <a
                     href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
                     target="_blank"
@@ -140,7 +240,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section id="bio" className="px-5 py-24 md:px-8 md:py-32">
+      <section id="bio" className="border-y border-white/10 bg-neutral-950 px-5 py-24 md:px-8 md:py-32">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div className="relative overflow-hidden rounded-[2rem] border border-white/10">
             <Image
@@ -155,12 +255,58 @@ export default async function Home() {
           </div>
           <div>
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-lime-400">Biografía</p>
-            <h2 className="text-balance text-4xl font-black tracking-tight md:text-6xl">Emoción real convertida en música.</h2>
+            <h2 className="text-balance text-4xl font-black tracking-tight md:text-6xl">
+              Emoción real convertida en música.
+            </h2>
             <div className="mt-7 space-y-5 text-lg leading-relaxed text-neutral-300">
-              <p>Mr Brey transforma experiencias reales en canciones que mezclan vulnerabilidad, fuerza, romance y evolución personal.</p>
-              <p>Su propuesta fusiona R&B latino, pop emocional, rap, trap caribeño y afrobeat con una sensibilidad cinematográfica que convierte cada tema en una experiencia.</p>
-              <p className="font-bold text-white">No solo canta historias. Construye un universo alrededor de ellas.</p>
+              <p>
+                Mr Brey es un artista independiente de Latin Urban basado en New Jersey, con una propuesta moderna construida alrededor de melodía, atmósfera, ritmo caribeño y producción urbana contemporánea.
+              </p>
+              <p>
+                Su música conecta vulnerabilidad, sensualidad, fuerza, romance y evolución personal con una identidad visual de inspiración cinematográfica.
+              </p>
+              <p className="font-bold text-white">
+                Cada lanzamiento busca convertir una emoción en una experiencia completa.
+              </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="press" className="px-5 py-24 md:px-8 md:py-32">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+            <article className="rounded-[2rem] border border-white/10 bg-neutral-950 p-8 md:p-10">
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-lime-400">Press coverage</p>
+              <h2 className="mt-4 max-w-3xl text-balance text-3xl font-black tracking-tight md:text-5xl">
+                MusicTalkers: “Mr Brey Ignites Momentum With ‘Se Me Pega’”
+              </h2>
+              <p className="mt-5 max-w-3xl leading-relaxed text-neutral-400">
+                La cobertura presenta el sonido del tema como una fusión de Afro-Reggaeton, Latin Trap y Urban Pop, destacando su hook, atmósfera y crecimiento digital.
+              </p>
+              <a
+                href={musicTalkersFeatureUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-7 inline-block rounded-full border border-white/15 px-5 py-2.5 font-bold hover:border-lime-400 hover:text-lime-400"
+              >
+                Leer artículo →
+              </a>
+            </article>
+
+            <article className="rounded-[2rem] border border-lime-400/20 bg-gradient-to-br from-lime-400/10 to-neutral-950 p-8 md:p-10">
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-lime-400">For media</p>
+              <h2 className="mt-4 text-3xl font-black tracking-tight">Press / Radio EPK</h2>
+              <p className="mt-5 leading-relaxed text-neutral-400">
+                Bio oficial, datos del single, registros de industria, links, materiales y contacto profesional en una página preparada para medios.
+              </p>
+              <Link
+                href="/press"
+                className="mt-7 inline-block rounded-full bg-white px-5 py-2.5 font-black text-black hover:bg-lime-400"
+              >
+                Abrir Press Kit →
+              </Link>
+            </article>
           </div>
         </div>
       </section>
@@ -170,22 +316,39 @@ export default async function Home() {
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-lime-400">Contacto profesional</p>
           <div className="mt-5 flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
             <div>
-              <h2 className="max-w-3xl text-balance text-4xl font-black tracking-tight md:text-6xl">Booking, prensa, radio y colaboraciones.</h2>
-              <p className="mt-5 max-w-2xl text-neutral-400">Para oportunidades profesionales, entrevistas, programación musical y colaboraciones.</p>
+              <h2 className="max-w-3xl text-balance text-4xl font-black tracking-tight md:text-6xl">
+                Booking, prensa, radio y colaboraciones.
+              </h2>
+              <p className="mt-5 max-w-2xl text-neutral-400">
+                Para entrevistas, programación musical, oportunidades profesionales y colaboraciones.
+              </p>
             </div>
-            <a href="mailto:press@mrbrey.com" className="shrink-0 rounded-full bg-white px-6 py-3 font-black text-black hover:-translate-y-0.5 hover:bg-lime-400">
-              press@mrbrey.com
+            <a
+              href={`mailto:${pressEmail}`}
+              className="shrink-0 rounded-full bg-white px-6 py-3 font-black text-black hover:-translate-y-0.5 hover:bg-lime-400"
+            >
+              {pressEmail}
             </a>
           </div>
         </div>
       </section>
 
       <footer className="border-t border-white/10 px-5 py-8 md:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-3 text-sm text-neutral-500 md:flex-row md:items-center">
+        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 text-sm text-neutral-500 md:flex-row md:items-center">
           <p>© {new Date().getFullYear()} Mr Brey.</p>
-          <div className="flex items-center gap-5">
-            <a href={youtubeChannelUrl} target="_blank" rel="noopener noreferrer" className="hover:text-lime-400">YouTube</a>
-            <p>Música · Arte · Identidad</p>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            {socialLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-lime-400"
+              >
+                {link.label}
+              </a>
+            ))}
+            <Link href="/press" className="hover:text-lime-400">Press / EPK</Link>
           </div>
         </div>
       </footer>
