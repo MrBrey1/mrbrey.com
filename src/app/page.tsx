@@ -10,13 +10,6 @@ const featuredVideos = [
   { title: "No hay Ayer ni mañana", youtubeId: "nTWWyZJZgZY" },
 ];
 
-const socials = [
-  { label: "Spotify", href: "https://open.spotify.com/artist/" },
-  { label: "YouTube", href: "https://www.youtube.com/" },
-  { label: "Instagram", href: "https://www.instagram.com/" },
-  { label: "TikTok", href: "https://www.tiktok.com/" },
-];
-
 export default function Home() {
   return (
     <main className="min-h-screen overflow-hidden bg-black text-white">
@@ -79,15 +72,9 @@ export default function Home() {
       </section>
 
       <section className="border-y border-white/10 bg-neutral-950/80 px-5 py-6 md:px-8">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4">
-          <p className="text-sm font-bold uppercase tracking-[0.22em] text-neutral-500">Conecta con Mr Brey</p>
-          <div className="flex flex-wrap gap-5 text-sm font-bold">
-            {socials.map((social) => (
-              <a key={social.label} href={social.href} target="_blank" rel="noopener noreferrer" className="text-neutral-300 hover:text-lime-400">
-                {social.label}
-              </a>
-            ))}
-          </div>
+        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-3 md:flex-row md:items-center">
+          <p className="text-sm font-bold uppercase tracking-[0.22em] text-neutral-500">Artista independiente · USA / Caribe</p>
+          <p className="text-sm text-neutral-400">Música · Visuales · Cultura · Emoción</p>
         </div>
       </section>
 
