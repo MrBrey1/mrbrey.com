@@ -46,24 +46,24 @@ export async function getLatestYouTubeVideos(limit = 12): Promise<YouTubeVideo[]
 
     const xml = await response.text();
     const entries = [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/g)];
+    const videos: YouTubeVideo[] = [];
 
-    return entries
-      .map((entry) => {
-        const block = entry[1];
-        const youtubeId = block.match(/<yt:videoId>(.*?)<\/yt:videoId>/)?.[1];
-        const title = block.match(/<title>([\s\S]*?)<\/title>/)?.[1];
-        const published = block.match(/<published>(.*?)<\/published>/)?.[1];
+    for (const entry of entries) {
+      const block = entry[1];
+      const youtubeId = block.match(/<yt:videoId>(.*?)<\/yt:videoId>/)?.[1];
+      const title = block.match(/<title>([\s\S]*?)<\/title>/)?.[1];
+      const published = block.match(/<published>(.*?)<\/published>/)?.[1];
 
-        if (!youtubeId || !title) return null;
+      if (!youtubeId || !title) continue;
 
-        return {
-          youtubeId,
-          title: decodeXml(title.trim()),
-          published,
-        };
-      })
-      .filter((video): video is YouTubeVideo => Boolean(video))
-      .slice(0, limit);
+      videos.push({
+        youtubeId,
+        title: decodeXml(title.trim()),
+        published,
+      });
+    }
+
+    return videos.slice(0, limit);
   } catch {
     return [];
   }
@@ -72,7 +72,7 @@ export async function getLatestYouTubeVideos(limit = 12): Promise<YouTubeVideo[]
 export async function getYouTubeVideoDetails(
   youtubeIds: readonly string[],
 ): Promise<YouTubeVideo[]> {
-  const results = await Promise.all(
+  return Promise.all(
     youtubeIds.map(async (youtubeId, index) => {
       try {
         const watchUrl = `https://www.youtube.com/watch?v=${youtubeId}`;
@@ -93,6 +93,4 @@ export async function getYouTubeVideoDetails(
       }
     }),
   );
-
-  return results;
 }
