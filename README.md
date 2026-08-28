@@ -28,30 +28,13 @@ npm run build
 
 ## Content configuration
 
-Official artist links, the focus single, press assets and campaign YouTube IDs are centralized in:
+Official artist links, the focus single, press assets and campaign YouTube IDs are centralized in `src/data/media.ts`.
 
-`src/data/media.ts`
+The YouTube integration lives in `src/lib/youtube.ts`. The gallery attempts to load the latest videos from the official YouTube channel and falls back to the saved archive if YouTube is temporarily unavailable.
 
-The YouTube integration lives in:
+## Production readiness
 
-`src/lib/youtube.ts`
-
-The gallery attempts to load the latest videos from the official YouTube channel and falls back to the saved archive if YouTube is temporarily unavailable.
-
-## SEO and production readiness
-
-The project includes:
-
-- canonical metadata
-- Open Graph / Twitter metadata
-- structured data for Mr Brey and “Se Me Pega”
-- sitemap
-- robots.txt
-- web manifest
-- security headers
-- AVIF/WebP image delivery through Next.js
-- branded 404 page
-- accessible focus states and reduced-motion support
+The site includes canonical and social metadata, structured data, sitemap, robots.txt, web manifest, security headers, optimized Next.js image delivery, a branded 404 page, accessible focus states and reduced-motion support.
 
 ## Deployment
 
