@@ -13,33 +13,33 @@ const videos = [
 ];
 
 export const metadata = {
-  title: "Videos Oficiales | Mr Brey",
+  title: "Videos Oficiales",
   description:
-    "Galería oficial de videos musicales de Mr Brey. Música urbana, cinematográfica y emocional.",
+    "Videos musicales oficiales de Mr Brey: música urbana, narrativa visual y emoción cinematográfica.",
+  alternates: {
+    canonical: "/videos",
+  },
 };
 
 export default function VideosPage() {
   return (
-    <main className="min-h-screen bg-black px-6 py-16 text-white md:px-16">
-      <div className="mx-auto max-w-6xl">
-        <Link href="/" className="text-sm text-lime-400 hover:text-lime-300">
+    <main className="min-h-screen bg-black px-5 pb-24 pt-28 text-white md:px-8 md:pt-32">
+      <div className="mx-auto max-w-7xl">
+        <Link href="/" className="text-sm font-bold text-lime-400 hover:text-lime-300">
           ← Volver al inicio
         </Link>
 
-        <h1 className="mt-8 text-4xl font-black md:text-6xl">
-          Videos Oficiales
-        </h1>
+        <div className="mt-10 max-w-4xl">
+          <p className="mb-3 text-xs font-bold uppercase tracking-[0.3em] text-lime-400">Archivo visual</p>
+          <h1 className="text-balance text-5xl font-black tracking-tight md:text-7xl">Videos oficiales de Mr Brey</h1>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-neutral-400">
+            Música, historias y emoción en una colección audiovisual que acompaña la evolución artística de Mr Brey.
+          </p>
+        </div>
 
-        <p className="mt-4 max-w-2xl text-neutral-400">
-          Una colección visual de canciones, historias y emociones de Mr Brey.
-        </p>
-
-        <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {videos.map((video) => (
-            <article
-              key={video.youtubeId}
-              className="overflow-hidden rounded-2xl border border-white/10 bg-neutral-950"
-            >
+            <article key={video.youtubeId} className="group overflow-hidden rounded-3xl border border-white/10 bg-neutral-950">
               <iframe
                 className="aspect-video w-full"
                 src={`https://www.youtube.com/embed/${video.youtubeId}`}
@@ -48,17 +48,15 @@ export default function VideosPage() {
                 allowFullScreen
                 loading="lazy"
               />
-
               <div className="p-5">
-                <h2 className="text-lg font-bold">{video.title}</h2>
-
+                <h2 className="text-lg font-black group-hover:text-lime-400">{video.title}</h2>
                 <a
                   href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-3 inline-block text-sm text-neutral-400 hover:text-lime-400"
+                  className="mt-3 inline-block text-sm font-semibold text-neutral-500 hover:text-lime-400"
                 >
-                  Ver en YouTube →
+                  Abrir en YouTube →
                 </a>
               </div>
             </article>
