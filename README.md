@@ -28,7 +28,7 @@ npm run build
 
 ## Content configuration
 
-Official artist links, the focus single and campaign YouTube IDs are centralized in:
+Official artist links, the focus single, press assets and campaign YouTube IDs are centralized in:
 
 `src/data/media.ts`
 
@@ -38,7 +38,7 @@ The YouTube integration lives in:
 
 The gallery attempts to load the latest videos from the official YouTube channel and falls back to the saved archive if YouTube is temporarily unavailable.
 
-## SEO
+## SEO and production readiness
 
 The project includes:
 
@@ -48,7 +48,11 @@ The project includes:
 - sitemap
 - robots.txt
 - web manifest
+- security headers
+- AVIF/WebP image delivery through Next.js
+- branded 404 page
+- accessible focus states and reduced-motion support
 
 ## Deployment
 
-The site is connected to Vercel. Pull requests receive preview deployments and GitHub Actions validates lint + production build before changes are merged into `main`.
+The site is connected to Vercel. Pull requests receive preview deployments and GitHub Actions validates lint + production build before changes are merged into `main`. CI also validates the production branch after merge.
